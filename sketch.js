@@ -2,6 +2,7 @@ const Engine = Matter.Engine;
 const World = Matter.World;
 const Bodies = Matter.Bodies;
 const Body = Matter.Body;
+const Render = Matter.Render;
 
 var bin1, bin2, bin3;
 var ground;
@@ -10,8 +11,7 @@ var ball;
 function setup() {
 	createCanvas(windowWidth, 700);
 
-
-	engine = Engine.create();
+  engine = Engine.create();
 	world = engine.world;
 
 	//Create the Bodies Here.
@@ -22,6 +22,16 @@ function setup() {
 	bin3 = new Bin(990, 600, 10, 100);
 
 	ball = new Waste(50, 550, 15, 15);
+
+  var render = Render.create({
+    element: document.body,
+    engine: engine,
+    options: {
+      width: 1200,
+      height: 700,
+      wireframes: false
+    }
+  });
 
 	Engine.run(engine);
 }
@@ -44,9 +54,10 @@ function draw() {
   ball.display(); 
   
   if(keyCode === UP_ARROW) {
-	  Body.applyForce(ball.body, {x: ball.body.position.x, y: ball.body.position.y}, {x: 0, y: -2});
+	  Body.applyForce(ball.body, ball.body.position, {x: 1, y: -2});
   }
 }
+
 
 
 

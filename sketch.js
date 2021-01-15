@@ -52,10 +52,7 @@ function draw() {
   bin3.display();
 
   ball.display(); 
-  
-  if(keyCode === UP_ARROW) {
-	  Body.applyForce(ball.body, ball.body.position, {x: 1, y: -2});
-  }
+
 }
 
 
